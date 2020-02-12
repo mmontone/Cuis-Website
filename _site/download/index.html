@@ -86,18 +86,18 @@
 
 <p>Note: The ‘–depth 1’ option avoids cloning all repo history (most likely you don’t need it) and makes cloning the remo much faster, using less disk space.</p>
 
-<p>Note: If you are creating the main (or only) Cuis folder in your machine, you might prefer ‘Cuis-Smalltalk’ as the folder name instead of ‘MyProject’ or some specific project name.
+<p>Note: If you are creating the main (or only) Cuis folder in your machine, you might prefer ‘Cuis-Smalltalk’ as the folder name instead of ‘MyProject’ or some specific project name.<br />
 <code class="highlighter-rouge">
 mkdir MyProject
 cd MyProject
 git clone --depth 1 https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev.git
 ./Cuis-Smalltalk-Dev/clonePackageRepos.sh
-</code>
-After that, you may periodically update all your repos from GitHub:
+</code><br />
+After that, you may periodically update all your repos from GitHub:<br />
 <code class="highlighter-rouge">
 ./Cuis-Smalltalk-Dev/pullAllRepos.sh
-</code>
-Additionally, after doing your stuff, you can check what you need to commit to GitHub:
+</code><br />
+Additionally, after doing your stuff, you can check what you need to commit to GitHub:<br />
 <code class="highlighter-rouge">
 ./Cuis-Smalltalk-Dev/gitStatusAllRepos.sh
 </code></p>
@@ -107,45 +107,45 @@ Additionally, after doing your stuff, you can check what you need to commit to G
 <p>Note: For 32 bits Linux on Intel/AMD, use <code class="highlighter-rouge">*_linux32x86_*</code> vm and the <code class="highlighter-rouge">*-32.image</code> Cuis image.</p>
 
 <h3 id="get-and-set-up-an-appropriate-vm">Get and set up an appropriate VM</h3>
-<p><code class="highlighter-rouge">
-cd MyProject
+<div class="highlighter-rouge"><pre class="highlight"><code>cd MyProject
 rm -r cogspur
 wget -O cogspur.tgz https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_linux64x64_201901172323.tar.gz
 tar -zxvf cogspur.tgz
 mv ./sqcogspur64linuxht ./cogspur
-</code></p>
+</code></pre>
+</div>
 
 <h3 id="starting-cuis-smalltalk">Starting Cuis Smalltalk</h3>
-<p><code class="highlighter-rouge">
-cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024.image
-</code>
-If you get this error message (you won’t get it if you run Cuis as root or sudo):
+<div class="highlighter-rouge"><pre class="highlight"><code>cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024.image
+</code></pre>
+</div>
+<p>If you get this error message (you won’t get it if you run Cuis as root or sudo):<br />
 <code class="highlighter-rouge">
 pthread_setschedparam failed: Operation not permitted
 ...
-</code>
-Then you need to do this (just one time):
+</code><br />
+Then you need to do this (just one time):<br />
 <code class="highlighter-rouge">
 sudo cp Cuis-Smalltalk-Dev/squeak.conf /etc/security/limits.d/squeak.conf
-</code>
+</code><br />
 Log out and log back in, or reboot the machine.</p>
 
 <h2 id="for-macosx">For MacOSX</h2>
 
 <h3 id="get-and-set-up-an-appropriate-vm-1">Get and set up an appropriate VM</h3>
-<p><code class="highlighter-rouge">
-cd MyProject
+<div class="highlighter-rouge"><pre class="highlight"><code>cd MyProject
 curl -L -o CogSpur.dmg https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_macos64x64_201901172323.dmg
 Open Finder on your folder
 Double click on the dmg file
 Drag Squeak.app to your folder
-</code></p>
+</code></pre>
+</div>
 
 <h3 id="starting-cuis-smalltalk-1">Starting Cuis Smalltalk</h3>
 <ul>
   <li>drop the Cuis5.0-4024.image over the Squeak.app file</li>
   <li>If you get “Squeak is an app downloaded from the Internet. Are you sure you want to open it?”, click on [Open]</li>
-  <li>Alternatively, you might:
+  <li>Alternatively, you might:<br />
 <code class="highlighter-rouge">
 ./Squeak.app/Contents/MacOS/Squeak Cuis-Smalltalk-Dev-master/Cuis5.0-4024.image
 </code></li>
@@ -156,52 +156,52 @@ Drag Squeak.app to your folder
 <p>Note: For 32 bits Windows, use <code class="highlighter-rouge">*_win32x86_*</code> vm and the <code class="highlighter-rouge">*-32.image</code> Cuis image.</p>
 
 <h3 id="get-and-set-up-an-appropriate-vm-2">Get and set up an appropriate VM</h3>
-<p><code class="highlighter-rouge">
-cd MyProject
+<div class="highlighter-rouge"><pre class="highlight"><code>cd MyProject
 rm -r cogspur
 curl -k -L -o cogspur.zip https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_win64x64_201901172323.zip
 unzip cogspur.zip -d cogspur
-</code></p>
+</code></pre>
+</div>
 
 <h3 id="starting-cuis-smalltalk-2">Starting Cuis Smalltalk</h3>
-<p><code class="highlighter-rouge">
-cogspur/Squeak.exe Cuis-Smalltalk-Dev/Cuis5.0-4024.image
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>cogspur/Squeak.exe Cuis-Smalltalk-Dev/Cuis5.0-4024.image
+</code></pre>
+</div>
 
 <h2 id="for-raspberry-pi-raspian">For Raspberry Pi Raspian</h2>
 
 <h3 id="get-and-set-up-an-appropriate-vm-3">Get and set up an appropriate VM</h3>
-<p><code class="highlighter-rouge">
-cd MyProject
+<div class="highlighter-rouge"><pre class="highlight"><code>cd MyProject
 rm -r cogspur
 wget -O cogspur.tgz https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_linux32ARMv6_201901172323.tar.gz
 tar -zxvf cogspur.tgz
 mv ./sqcogspurlinuxhtRPi ./cogspur
-</code></p>
+</code></pre>
+</div>
 
 <h3 id="starting-cuis-smalltalk-3">Starting Cuis Smalltalk</h3>
-<p><code class="highlighter-rouge">
-cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
-</code></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
+</code></pre>
+</div>
 
 <h2 id="for-chromebooks">For Chromebooks</h2>
 
 <p>You can use Linux as a chroot in ChromeOS using Crouton to run a Cuis image.</p>
 
-<p>First you need to follow the directions for installing Crouton at
+<p>First you need to follow the directions for installing Crouton at<br />
 	https://github.com/dnschneid/crouton</p>
 
 <p>Note: JIT (Just In Time) compiling is disabled by ChromeOS. This means that <em>_squeak.cog.</em> VMs will not work.</p>
 
 <h3 id="for-intel-cpus-get-and-set-up-an-appropriate-vm">For Intel CPUs: Get and set up an appropriate VM</h3>
-<p><code class="highlighter-rouge">
-cd MyProject
+<div class="highlighter-rouge"><pre class="highlight"><code>cd MyProject
 rm -r cogspur
 wget -O cogspur.tgz https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_linux32x86_201901172323.tar.gz
 tar -zxvf cogspur.tgz
 mv ./sqcogspurlinuxht ./cogspur
-</code>
-### For ARM CPUs: Get and set up an appropriate VM ###
+</code></pre>
+</div>
+<p>### For ARM CPUs: Get and set up an appropriate VM ###<br />
 <code class="highlighter-rouge">
 cd MyProject
 rm -r stkspur
@@ -211,10 +211,10 @@ mv ./sqstkspurlinuxhtRPi ./stkspur
 </code></p>
 
 <h3 id="starting-cuis-smalltalk-4">Starting Cuis Smalltalk</h3>
-<p><code class="highlighter-rouge">
-cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
+<div class="highlighter-rouge"><pre class="highlight"><code>cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
 stkspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
-</code></p>
+</code></pre>
+</div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 <ul>
@@ -223,14 +223,14 @@ stkspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
   <li>If you can’t find Cuis5.0-4024-32.image, then this document is outdated. Use the Cuis spur image with the latest update number available.</li>
   <li>If you can’t find the Squeak Cog Spur VM specified, then this document is outdated. Use the the Squeak Cog Spur VM for your platform with the latest Date and Time available from http://opensmalltalk.org/</li>
   <li>If you can’t get Cuis to run on your system after trying the above instructions, send mail to the Cuis-Dev mail list. Please give enough detail of your system, what you tried, and any error messages you got.</li>
-  <li>To get the contents of this repository without using Git, you can do
+  <li>To get the contents of this repository without using Git, you can do<br />
 <code class="highlighter-rouge">
 wget https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev/archive/master.zip
-</code>
-or
+</code><br />
+or<br />
 <code class="highlighter-rouge">
 curl -L -o master.zip  https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev/archive/master.zip
-</code>
+</code><br />
 and extract the contents of the zip file.</li>
 </ul>
 

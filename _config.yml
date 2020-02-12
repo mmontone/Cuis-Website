@@ -17,5 +17,5 @@ github_username:  CuisSmalltalk
 # Build settings
 markdown: kramdown
 
-#kramdown:
-#  input: GFM
+kramdown:
+  input: GFM
