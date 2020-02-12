@@ -4,10 +4,10 @@
     <title>Cuis Smalltalk</title>
     <description>Cuis is an Open Source, multiplatform Smalltalk-80 system.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 12 Feb 2020 20:37:20 -0300</pubDate>
-    <lastBuildDate>Wed, 12 Feb 2020 20:37:20 -0300</lastBuildDate>
+    <link>http://cuis-smalltalk.github.io/</link>
+    <atom:link href="http://cuis-smalltalk.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 12 Feb 2020 20:39:18 -0300</pubDate>
+    <lastBuildDate>Wed, 12 Feb 2020 20:39:18 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -28,8 +28,8 @@
 
 </description>
         <pubDate>Wed, 12 Feb 2020 10:35:50 -0300</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2020/02/12/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2020/02/12/welcome-to-jekyll.html</guid>
+        <link>http://cuis-smalltalk.github.io/jekyll/update/2020/02/12/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">http://cuis-smalltalk.github.io/jekyll/update/2020/02/12/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>

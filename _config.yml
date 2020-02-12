@@ -7,16 +7,15 @@
 
 # Site settings
 title: Cuis Smalltalk
-email: your-email@domain.com
+email: cuis-dev@cuis-smalltalk.org
 description: > # this means to ignore newlines until "baseurl:"
   Cuis is an Open Source, multiplatform Smalltalk-80 system.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "http://cuis-smalltalk.github.io" # the base hostname & protocol for your site
+github_username:  CuisSmalltalk
 
 # Build settings
 markdown: kramdown
 
-kramdown:
-  input: GFM
+#kramdown:
+#  input: GFM
