@@ -15,7 +15,12 @@ url: "http://cuis-smalltalk.github.io" # the base hostname & protocol for your s
 github_username:  CuisSmalltalk
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
+redcarpet:
+  extensions:
+    - lax_spacing
+    
+# markdown: kramdown
 
-kramdown:
-  input: GFM
+# kramdown:
+#   input: GFM
