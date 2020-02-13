@@ -144,13 +144,6 @@ pre {
   .icon > svg path {
     fill: #828282; }
 
-.home {
-  border: 2px solid #AEADAD;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  padding: 10px;
-  background-color: white; }
-
 .windowbar {
   background-image: linear-gradient(to bottom, lightgray, #AEADAD);
   padding-left: 10px;
@@ -173,7 +166,11 @@ pre {
   bottom: 0;
   width: 100%; }
 
-.post {
+.window-content {
+  border: 2px solid #AEADAD;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
   background-color: white; }
 
 /**

@@ -1,8 +1,12 @@
 ---
-layout: page
+layout: default
 title: About
 permalink: /about/
 ---
+
+<div style="padding: 20px;"></div>
+<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;About Cuis</div>
+<div class="window-content">
 
 <img src="../cuis.png" style="float:right;height: 300px;">
 
@@ -27,3 +31,5 @@ permalink: /about/
 
 {% capture gsn %}{% include_relative Documentation/OnSmalltalk80.md %}{% endcapture %}
 {{ gsn | markdownify }}
+
+</div>

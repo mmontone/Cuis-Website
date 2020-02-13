@@ -205,14 +205,6 @@ pre {
     }
 }
 
-.home {
-    border: 2px solid #AEADAD;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
-    background-color: white;
-}
-
 .windowbar {
     background-image: linear-gradient(to bottom, lightgray, #AEADAD);
     //background-color: #AEADAD;
@@ -221,11 +213,6 @@ pre {
     border-top-right-radius: 10px;
     font-size: 20px;
 }
-
-// .page-content {
-//     background-image: url('../Cuis_environment.png');
-//     opacity: 0.5;
-// }
 
 .page-content {
     position:relative;
@@ -245,6 +232,10 @@ pre {
     width: 100%;    
 }
 
-.post {
+.window-content {
+    border: 2px solid #AEADAD;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
     background-color: white;
 }
