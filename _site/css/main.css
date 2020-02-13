@@ -144,6 +144,17 @@ pre {
   .icon > svg path {
     fill: #828282; }
 
+.home {
+  border: 2px solid #AEADAD;
+  padding: 10px; }
+
+.windowbar {
+  background-color: #AEADAD;
+  padding-left: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 20px; }
+
 /**
  * Site header
  */
