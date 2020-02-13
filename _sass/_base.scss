@@ -214,7 +214,8 @@ pre {
 }
 
 .windowbar {
-    background-color: #AEADAD;
+    background-image: linear-gradient(to bottom, lightgray, #AEADAD);
+    //background-color: #AEADAD;
     padding-left: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
