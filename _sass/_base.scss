@@ -239,10 +239,16 @@ pre {
     border: 2px solid #AEADAD;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     background-color: white;
 }
 
 .site-title {
     color: #0343D8;
 }
+
+.site-title:link {
+    text-decoration: none;
+}
+
+
