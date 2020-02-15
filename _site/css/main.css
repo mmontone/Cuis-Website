@@ -183,7 +183,8 @@ pre {
   text-decoration: none; }
 
 .toc {
-  margin-left: 10px; }
+  margin-left: 10px;
+  opacity: 0.9; }
 
 .toc > ul {
   background-color: #C3C3C2;
