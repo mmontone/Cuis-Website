@@ -10,11 +10,10 @@ permalink: /download/
 <!-- <div class="toc" style="position: fixed; left: 30px; top: 100px;"> -->
 <!-- {% include toc.html html=html h_min=2 h_max=2 %} -->
 <!-- </div> -->
-
 <div style="padding: 20px;"></div>
 <div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Download and Install Cuis</div>
 <div class="window-content">
-<div class="toc" style="float: right;">
+<div id="table-of-contents" class="toc" style="float: right;">
 {% include toc.html html=html h_min=2 h_max=2 %}
 </div>
 {{ html }}
