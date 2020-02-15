@@ -13,7 +13,7 @@ permalink: /download/
 <div style="padding: 20px;"></div>
 <div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Download and Install Cuis</div>
 <div class="window-content">
-<div id="table-of-contents" class="toc" style="float: right;">
+<div id="table-of-contents" class="toc" style="position:relative;float:right; clear:none; left: 130px;margin-left: -100px;">
 {% include toc.html html=html h_min=2 h_max=2 %}
 </div>
 {{ html }}
