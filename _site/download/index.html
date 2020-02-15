@@ -47,14 +47,40 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div style="padding: 20px;"></div>
+        <!-- <div class="toc" style="position: fixed; left: 30px; top: 100px;"> -->
+
+<!-- <ul>
+<li> <a href="#for-all-systems-create-project-folder-and-add-cuis-smalltalk">For all systems: Create project folder and add Cuis Smalltalk</a></li>
+<li> <a href="#for-64-bits-linux-running-on-amd-intel-x64-hardware">For 64 bits Linux running on AMD/Intel x64 hardware</a></li>
+<li> <a href="#for-macosx">For MacOSX</a></li>
+<li> <a href="#for-64-bits-windows-git-bash">For 64 bits Windows (Git Bash)</a></li>
+<li> <a href="#for-raspberry-pi-raspian">For Raspberry Pi Raspian</a></li>
+<li> <a href="#for-chromebooks">For Chromebooks</a></li>
+<li> <a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+ -->
+
+<!-- </div> -->
+
+<div style="padding: 20px;"></div>
 
 <div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Download and Install Cuis</div>
 
 <div class="window-content">
+<div class="toc" style="float: right;">
+<ul>
+<li> <a href="#for-all-systems-create-project-folder-and-add-cuis-smalltalk">For all systems: Create project folder and add Cuis Smalltalk</a></li>
+<li> <a href="#for-64-bits-linux-running-on-amd-intel-x64-hardware">For 64 bits Linux running on AMD/Intel x64 hardware</a></li>
+<li> <a href="#for-macosx">For MacOSX</a></li>
+<li> <a href="#for-64-bits-windows-git-bash">For 64 bits Windows (Git Bash)</a></li>
+<li> <a href="#for-raspberry-pi-raspian">For Raspberry Pi Raspian</a></li>
+<li> <a href="#for-chromebooks">For Chromebooks</a></li>
+<li> <a href="#troubleshooting">Troubleshooting</a></li>
+</ul>
 
+</div>
 
-<h1>Setting up and starting Cuis Smalltalk</h1>
+<h1 id="setting-up-and-starting-cuis-smalltalk">Setting up and starting Cuis Smalltalk</h1>
 
 <p>Cuis Smalltalk is available in 64 bits and 32 bits variants. It also available in the 32 bits V3 (pre Spur) image format. All three of them share the full source code and have essentially the same behavior, providing full portability for your code between them. These instructions are for the recommended format for each system, although most systems support all of them.</p>
 
@@ -64,11 +90,12 @@
 
 <p>If you want to contribute back to the community, you can do pull requests to this repo and/or alternatively subscribe to the Cuis development mail list at http://cuis-smalltalk.org/mailman/listinfo/cuis-dev_cuis-smalltalk.org , and email your code there.</p>
 
-<h2>For all systems: Create project folder and add Cuis Smalltalk</h2>
+<h2 id="for-all-systems-create-project-folder-and-add-cuis-smalltalk">For all systems: Create project folder and add Cuis Smalltalk</h2>
 
 <p>Note: The &#39;--depth 1&#39; option avoids cloning all repo history (most likely you don&#39;t need it) and makes cloning the remo much faster, using less disk space.</p>
 
 <p>Note: If you are creating the main (or only) Cuis folder in your machine, you might prefer &#39;Cuis-Smalltalk&#39; as the folder name instead of &#39;MyProject&#39; or some specific project name.</p>
+
 <div class="highlight"><pre><code class="language-" data-lang="">mkdir MyProject
 cd MyProject
 git clone --depth 1 https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev.git
@@ -80,18 +107,18 @@ git clone --depth 1 https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev.git
 <p>Additionally, after doing your stuff, you can check what you need to commit to GitHub:</p>
 <div class="highlight"><pre><code class="language-" data-lang="">./Cuis-Smalltalk-Dev/gitStatusAllRepos.sh
 </code></pre></div>
-<h2>For 64 bits Linux running on AMD/Intel x64 hardware</h2>
+<h2 id="for-64-bits-linux-running-on-amd-intel-x64-hardware">For 64 bits Linux running on AMD/Intel x64 hardware</h2>
 
 <p>Note: For 32 bits Linux on Intel/AMD, use <code>*_linux32x86_*</code> vm and the <code>*-32.image</code> Cuis image.</p>
 
-<h3>Get and set up an appropriate VM</h3>
+<h3 id="get-and-set-up-an-appropriate-vm">Get and set up an appropriate VM</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cd MyProject
 rm -r cogspur
 wget -O cogspur.tgz https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_linux64x64_201901172323.tar.gz
 tar -zxvf cogspur.tgz
 mv ./sqcogspur64linuxht ./cogspur
 </code></pre></div>
-<h3>Starting Cuis Smalltalk</h3>
+<h3 id="starting-cuis-smalltalk">Starting Cuis Smalltalk</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024.image
 </code></pre></div>
 <p>If you get this error message (you won&#39;t get it if you run Cuis as root or sudo):</p>
@@ -103,16 +130,16 @@ mv ./sqcogspur64linuxht ./cogspur
 </code></pre></div>
 <p>Log out and log back in, or reboot the machine.</p>
 
-<h2>For MacOSX</h2>
+<h2 id="for-macosx">For MacOSX</h2>
 
-<h3>Get and set up an appropriate VM</h3>
+<h3 id="get-and-set-up-an-appropriate-vm">Get and set up an appropriate VM</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cd MyProject
 curl -L -o CogSpur.dmg https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_macos64x64_201901172323.dmg
 Open Finder on your folder
 Double click on the dmg file
 Drag Squeak.app to your folder
 </code></pre></div>
-<h3>Starting Cuis Smalltalk</h3>
+<h3 id="starting-cuis-smalltalk">Starting Cuis Smalltalk</h3>
 
 <ul>
 <li>drop the Cuis5.0-4024.image over the Squeak.app file</li>
@@ -123,32 +150,32 @@ Drag Squeak.app to your folder
 </code></li>
 </ul>
 
-<h2>For 64 bits Windows (Git Bash)</h2>
+<h2 id="for-64-bits-windows-git-bash">For 64 bits Windows (Git Bash)</h2>
 
 <p>Note: For 32 bits Windows, use <code>*_win32x86_*</code> vm and the <code>*-32.image</code> Cuis image.</p>
 
-<h3>Get and set up an appropriate VM</h3>
+<h3 id="get-and-set-up-an-appropriate-vm">Get and set up an appropriate VM</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cd MyProject
 rm -r cogspur
 curl -k -L -o cogspur.zip https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_win64x64_201901172323.zip
 unzip cogspur.zip -d cogspur
 </code></pre></div>
-<h3>Starting Cuis Smalltalk</h3>
+<h3 id="starting-cuis-smalltalk">Starting Cuis Smalltalk</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cogspur/Squeak.exe Cuis-Smalltalk-Dev/Cuis5.0-4024.image
 </code></pre></div>
-<h2>For Raspberry Pi Raspian</h2>
+<h2 id="for-raspberry-pi-raspian">For Raspberry Pi Raspian</h2>
 
-<h3>Get and set up an appropriate VM</h3>
+<h3 id="get-and-set-up-an-appropriate-vm">Get and set up an appropriate VM</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cd MyProject
 rm -r cogspur
 wget -O cogspur.tgz https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_linux32ARMv6_201901172323.tar.gz
 tar -zxvf cogspur.tgz
 mv ./sqcogspurlinuxhtRPi ./cogspur
 </code></pre></div>
-<h3>Starting Cuis Smalltalk</h3>
+<h3 id="starting-cuis-smalltalk">Starting Cuis Smalltalk</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
 </code></pre></div>
-<h2>For Chromebooks</h2>
+<h2 id="for-chromebooks">For Chromebooks</h2>
 
 <p>You can use Linux as a chroot in ChromeOS using Crouton to run a Cuis image.</p>
 
@@ -157,25 +184,25 @@ mv ./sqcogspurlinuxhtRPi ./cogspur
 
 <p>Note: JIT (Just In Time) compiling is disabled by ChromeOS. This means that <em>_squeak.cog.</em> VMs will not work.</p>
 
-<h3>For Intel CPUs: Get and set up an appropriate VM</h3>
+<h3 id="for-intel-cpus-get-and-set-up-an-appropriate-vm">For Intel CPUs: Get and set up an appropriate VM</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cd MyProject
 rm -r cogspur
 wget -O cogspur.tgz https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.cog.spur_linux32x86_201901172323.tar.gz
 tar -zxvf cogspur.tgz
 mv ./sqcogspurlinuxht ./cogspur
 </code></pre></div>
-<h3>For ARM CPUs: Get and set up an appropriate VM</h3>
+<h3 id="for-arm-cpus-get-and-set-up-an-appropriate-vm">For ARM CPUs: Get and set up an appropriate VM</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cd MyProject
 rm -r stkspur
 wget -O stkspur.tgz https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/download/201901172323/squeak.stack.spur_linux32ARMv6_201901172323.tar.gz
 tar -zxvf stkspur.tgz
 mv ./sqstkspurlinuxhtRPi ./stkspur
 </code></pre></div>
-<h3>Starting Cuis Smalltalk</h3>
+<h3 id="starting-cuis-smalltalk">Starting Cuis Smalltalk</h3>
 <div class="highlight"><pre><code class="language-" data-lang="">cogspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
 stkspur/squeak Cuis-Smalltalk-Dev/Cuis5.0-4024-32.image
 </code></pre></div>
-<h2>Troubleshooting</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
 <ul>
 <li>If when starting the image you get error messages like &quot;This interpreter (vers. 6505) cannot read image file (vers. 68021).&quot;, (68021 or some other reasonable number) it means you image and VM are mismatched. For example, one of them is Spur and the other is pre-Spur, or one of them is 32 bits and the other is 64 bits.</li>
@@ -203,11 +230,11 @@ and extract the contents of the zip file.</li>
 
 <div class="window-content">
 
-<h1>Quick setup for MacOS and Windows</h1>
+<h1 id="quick-setup-for-macos-and-windows">Quick setup for MacOS and Windows</h1>
 
 <p>What follows are instructions for setting up Cuis on Windows or Mac OS X without using Git or the command line. If you are comfortable with Git, please see <a href="GettingStarted.md">Getting started using Git Bash</a>. This document describes the simplest way to run Cuis on your computer.</p>
 
-<h2>On Windows</h2>
+<h2 id="on-windows">On Windows</h2>
 
 <ul>
 <li>Create a new folder in your machine using Windows Explorer</li>
@@ -220,7 +247,7 @@ and extract the contents of the zip file.</li>
 <li>If you get a message like &quot;Windows protected your PC&quot;, then click on &quot;More info&quot;, and click [Run anyway].</li>
 </ul>
 
-<h2>On Mac OS X</h2>
+<h2 id="on-mac-os-x">On Mac OS X</h2>
 
 <ul>
 <li>Create a new folder in your machine using Mac Finder</li>
@@ -233,7 +260,7 @@ and extract the contents of the zip file.</li>
 <li>If you get &quot;Squeak is an app downloaded from the Internet. Are you sure you want to open it?&quot;, click on [Open]</li>
 </ul>
 
-<h2>Troubleshooting</h2>
+<h2 id="troubleshooting">Troubleshooting</h2>
 
 <ul>
 <li>If you can&#39;t find Cuis5.0-4024.image, then this document is outdated. Use the Cuis image with the latest update number available.</li>

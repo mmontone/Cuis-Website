@@ -19,6 +19,7 @@ markdown: redcarpet
 redcarpet:
   extensions:
     - lax_spacing
+    - with_toc_data
     
 # markdown: kramdown
 
