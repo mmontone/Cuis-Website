@@ -48,116 +48,70 @@
     <div class="page-content">
       <div class="wrapper">
         <div style="padding: 20px;"></div>
-
 <div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Documentation</div>
-
 <div class="window-content">
-
-
-
-
 <div id="table-of-contents" class="toc" style="float: right;">
 <ul>
-<li> <a href="#the-philosophy-behind-cuis">The Philosophy behind Cuis</a></li>
-<li> <a href="#about-the-name-cuis">About the name Cuis</a></li>
-<li> <a href="#setting-up-cuis-in-your-machine">Setting up Cuis in your machine</a></li>
-<li> <a href="#learning-about-cuis-smalltalk">Learning about Cuis Smalltalk</a></li>
-<li> <a href="#contributing-to-cuis">Contributing to Cuis</a></li>
+<li><a href="#the-philosophy-behind-cuis">The Philosophy behind Cuis</a></li>
+<li><a href="#about-the-name-cuis">About the name Cuis</a></li>
+<li><a href="#setting-up-cuis-in-your-machine">Setting up Cuis in your machine</a></li>
+<li><a href="#learning-about-cuis-smalltalk">Learning about Cuis Smalltalk</a></li>
+<li><a href="#contributing-to-cuis">Contributing to Cuis</a></li>
 </ul>
-
 </div>
-
 <p>Cuis is an Open Source, multiplatform <a href="https://en.wikipedia.org/wiki/Smalltalk">Smalltalk-80</a> system.</p>
-
 <p>Cuis is</p>
-
 <ul>
 <li>Small</li>
 <li>Clean</li>
 <li>Appropriable</li>
 </ul>
-
 <p>Additionally, Cuis is:</p>
-
 <ul>
 <li>Open Source</li>
 <li>Multiplatform</li>
 </ul>
-
 <p>Like other Smalltalk systems, Cuis is also:</p>
-
 <ul>
 <li>A complete development environment written in itself</li>
 <li>A pure, dynamic Object Oriented language</li>
 </ul>
-
 <p>Cuis assumes very little on the underlying platform, and this lets it run out-of-the-box on Windows, MacOS, Linux, ChromeOS and WebBrowsers. Cuis shares the <a href="http://www.opensmalltalk.org">OpenSmalltalk Virtual Machine</a> with Squeak, Pharo and Newspeak.</p>
-
 <h2 id="the-philosophy-behind-cuis">The Philosophy behind Cuis</h2>
-
 <p><a href="#table-of-contents">(back to ToC)</a></p>
-
 <p>What sets Cuis apart from the other members of the Squeak family is the focus on Smalltalk-80 and an active attitude towards system complexity:</p>
-
-<p>Unbound complexity growth, together with development strategies focused only in the short term, are the worst long term enemies of all software systems. As systems grow older, they usually become more complex. New features are added as layers on top of whatever is below, sometimes without really understanding it, and almost always without modifying it. Complexity and size grow without control. Evolution slows down. Understanding the system becomes harder every day. Bugs are harder to fix. Codebases become huge for no clear reason. At some point, the system can&#39;t evolve anymore and becomes &quot;legacy code&quot;.</p>
-
-<p>Complexity puts a limit to the level of understanding of the system a person might reach, and therefore limits the things that can be done with it. Dan Ingalls says all this in <a href="http://www.cs.virginia.edu/%7Eevans/cs655/readings/smalltalk.html">&quot;Design Principles Behind Smalltalk&quot;</a>. Even if you have already done so, please go and read it again!</p>
-
+<p>Unbound complexity growth, together with development strategies focused only in the short term, are the worst long term enemies of all software systems. As systems grow older, they usually become more complex. New features are added as layers on top of whatever is below, sometimes without really understanding it, and almost always without modifying it. Complexity and size grow without control. Evolution slows down. Understanding the system becomes harder every day. Bugs are harder to fix. Codebases become huge for no clear reason. At some point, the system can't evolve anymore and becomes &quot;legacy code&quot;.</p>
+<p>Complexity puts a limit to the level of understanding of the system a person might reach, and therefore limits the things that can be done with it. Dan Ingalls says all this in <a href="http://www.cs.virginia.edu/~evans/cs655/readings/smalltalk.html">&quot;Design Principles Behind Smalltalk&quot;</a>. Even if you have already done so, please go and read it again!</p>
 <p>This presentation by Rich Hickey, <a href="http://www.infoq.com/presentations/Simple-Made-Easy">&quot;Simple made Easy&quot;</a> is also an excellent reflection on these values.</p>
-
-<p>We follow a set of ideas that started with Jean Piaget&#39;s <a href="https://en.wikipedia.org/wiki/Constructivism_(philosophy_of_education)">Constructivism</a>, and were further developed in Seymour Papert&#39;s <a href="https://en.wikipedia.org/wiki/Experiential_learning">Mathland</a>. These lead to Alan Kay&#39;s Learning Research Group&#39;s <a href="http://www.vpri.org/pdf/hc_pers_comp_for_children.pdf">Personal Computer for Children of All Ages</a>, <a href="http://www.vpri.org/pdf/m1977001_dynamedia.pdf">Personal Dynamic Media</a>, i.e. the <a href="http://www.vpri.org/pdf/hc_what_Is_a_dynabook.pdf">Dynabook</a> and to <a href="https://en.wikipedia.org/wiki/Smalltalk">Smalltalk-80</a>. To us, a Smalltalk system is a Dynabook. A place to experiment and learn, and a medium to express and register the knlowledge we acquire. We understand software development as the activity of learning and documenting knowledge, for us and others to use, and also to be run on a computer. The fact that the computer run is useful, is a consequence of the knowldege being sound and relevant. (Just making it work is <em>not</em> the important part!)</p>
-
+<p>We follow a set of ideas that started with Jean Piaget's <a href="https://en.wikipedia.org/wiki/Constructivism_(philosophy_of_education)">Constructivism</a>, and were further developed in Seymour Papert's <a href="https://en.wikipedia.org/wiki/Experiential_learning">Mathland</a>. These lead to Alan Kay's Learning Research Group's <a href="http://www.vpri.org/pdf/hc_pers_comp_for_children.pdf">Personal Computer for Children of All Ages</a>, <a href="http://www.vpri.org/pdf/m1977001_dynamedia.pdf">Personal Dynamic Media</a>, i.e. the <a href="http://www.vpri.org/pdf/hc_what_Is_a_dynabook.pdf">Dynabook</a> and to <a href="https://en.wikipedia.org/wiki/Smalltalk">Smalltalk-80</a>. To us, a Smalltalk system is a Dynabook. A place to experiment and learn, and a medium to express and register the knlowledge we acquire. We understand software development as the activity of learning and documenting knowledge, for us and others to use, and also to be run on a computer. The fact that the computer run is useful, is a consequence of the knowldege being sound and relevant. (Just making it work is <em>not</em> the important part!)</p>
 <p>Cuis Smalltalk is our attempt at this challenge. Furthermore, we believe we are doing something else that no other Smalltalk, commercial or open source, does. We attempt to give the true Smalltalk-80 experience, and keep Smalltalk-80 not as legacy software historic significance, but as a live, evolving system. We feel we are the keepers of the Smalltalk-80 heritage, and enablers of the Dynabook experience.</p>
-
 <p>Cuis is continuously evolving towards simplicity. Each release is better (i.e. simpler) than the previous one. At the same time, features are enhanced, and any reported bugs fixed. We also adopt recent enhancements from Squeak and share our work with the wider Squeak and Smalltalk community.</p>
-
 <h2 id="about-the-name-cuis">About the name Cuis</h2>
-
 <p><a href="#table-of-contents">(back to ToC)</a></p>
-
-<p>Cuis is the common name of a <a href="https://en.wikipedia.org/wiki/Southern_mountain_cavy">small animal</a> that lives in Argentina&#39;s countryside. Cuis Smalltalk was originally forked from Squeak Smalltalk and many of us are also active in the Squeak community. So, picking the onomatopoeia of the voice of a mouse for the name makes sense. As the project was started in Buenos Aires, &#39;Cuis&#39; (essentially &#39;Squeak&#39; in Rioplatense Spanish) was the obvious choice.</p>
-
+<p>Cuis is the common name of a <a href="https://en.wikipedia.org/wiki/Southern_mountain_cavy">small animal</a> that lives in Argentina's countryside. Cuis Smalltalk was originally forked from Squeak Smalltalk and many of us are also active in the Squeak community. So, picking the onomatopoeia of the voice of a mouse for the name makes sense. As the project was started in Buenos Aires, 'Cuis' (essentially 'Squeak' in Rioplatense Spanish) was the obvious choice.</p>
 <h2 id="setting-up-cuis-in-your-machine">Setting up Cuis in your machine</h2>
-
 <p><a href="#table-of-contents">(back to ToC)</a></p>
-
 <p>The quickest way to try Cuis (on Windows or MacOS) is by following <a href="Documentation/GettingStarted-NoCommandLine.md">Getting started using Mac Finder or Windows Explorer</a> .</p>
-
 <p>If you are on a Linux system, or have git available and are comfortable with it, follow <a href="Documentation/GettingStarted.md">Setting up and starting Cuis Smalltalk</a> .</p>
-
 <h2 id="learning-about-cuis-smalltalk">Learning about Cuis Smalltalk</h2>
-
 <p><a href="#table-of-contents">(back to ToC)</a></p>
-
 <p>If you are learning Smalltalk, the Cuis community can help you. Check the <a href="https://github.com/Cuis-Smalltalk/Learning-Cuis" title="Learning Cuis Smalltalk">&quot;Learning Cuis Smalltalk&quot;</a> repository. It includes several great tutorials. Also, the TerseGuide.pck.st package (in the /Packages folder in this repo) is useful both as a guide and a reference.</p>
-
 <p>Additionally, there are many tutorials and references for Smalltalk in the web. They apply quite well to Cuis, especially those written originally for Smalltalk-80 or Squeak. These books <a href="http://stephane.ducasse.free.fr/FreeBooks/BlueBook/Bluebook.pdf">&quot;Smalltalk-80 the language and its implementation&quot;</a> and <a href="http://stephane.ducasse.free.fr/FreeBooks/InsideST/InsideSmalltalk.pdf">&quot;Inside Smalltalk volume I&quot;</a> are great introductory texts, and they are also the reference for the language and basic class library. Both are freely available.</p>
-
-<p>The user interface enables you to access most of the code and conduct Smalltalk experiments on your own. You can review its features at <a href="https://github.com/Cuis-Smalltalk/Learning-Cuis/blob/master/Quick-UI-Tour.md">&quot;Quick Tour of the UI&quot;</a>. </p>
-
+<p>The user interface enables you to access most of the code and conduct Smalltalk experiments on your own. You can review its features at <a href="https://github.com/Cuis-Smalltalk/Learning-Cuis/blob/master/Quick-UI-Tour.md">&quot;Quick Tour of the UI&quot;</a>.</p>
 <h2 id="contributing-to-cuis">Contributing to Cuis</h2>
-
 <p><a href="#table-of-contents">(back to ToC)</a></p>
-
 <p>Cuis is maintained on https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev. The main meeting point for Cuis users and developers is the mail list https://lists.cuis.st/mailman/listinfo/cuis-dev. You can broswse the archives for a glimpse of our discussions. An older archive with pre-April-2019 messages can be found at http://cuis-smalltalk.org/pipermail/cuis-dev_cuis-smalltalk.org/.</p>
-
 <p>For the recommended way of handling your own projects based on Cuis, please read <a href="Documentation/CodeManagementInCuis.md">Code Management in Cuis</a>, about developing packages for Cuis, and <a href="Documentation/CuisAndGitHub.md">Using Git and GitHub to host and manage Cuis code</a>. While Cuis should work equally well with any file-based DVCS, we encourage the use of Git and GitHub.</p>
-
 <p>To contribute code to the base image, use the tools includede in Cuis, such as the ChangeSorter and the ChangeList to prepare ChangeSets and save them to file. Send the files as attachments to a message describing them to our mail list, so we all can review and discuss. We prefer this over git pull requests for changes to the base image. For changes to existing packages, or contribution of new packages, pull requests are OK.</p>
-
-<p>Please use an image with all relevant packages already loaded, using updated versions, especially, of any affected packages. This will ensure we don&#39;t break them while we evolve Cuis.</p>
-
+<p>Please use an image with all relevant packages already loaded, using updated versions, especially, of any affected packages. This will ensure we don't break them while we evolve Cuis.</p>
 <p>Any contribution must be under the MIT license.</p>
-
 <p>Here is a Smalltalk script to load all packages currently included in this repo:</p>
-
-<div class="highlight"><pre><code class="language-" data-lang="">Feature require: 'CorePackages'
-</code></pre></div>
+<pre><code>Feature require: 'CorePackages'
+</code></pre>
 <p>If you have already cloned all the repos in the https://github.com/Cuis-Smalltalk organization (maybe running clonePackageRepos.sh), this will load all of them (except for OMeta, that is a bit special).</p>
-<div class="highlight"><pre><code class="language-" data-lang="">Feature require: 'AllPackages'
-</code></pre></div>
+<pre><code>Feature require: 'AllPackages'
+</code></pre>
 <p>Cuis is distributed subject to the MIT License. See the LICENSE file. Any contribution submitted for incorporation into or for distribution with Cuis shall be presumed subject to the same license.</p>
-
 </div>
 
       </div>
