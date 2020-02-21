@@ -1,0 +1,19 @@
+---
+layout: skin
+permalink: /live
+---
+
+<canvas id="sqCanvas"></canvas>
+
+<script src="js/squeak_bundle.js"></script>
+
+<script type="text/javascript">
+ window.onload = function() {
+     sqCanvas.height = window.innerHeight;
+     sqCanvas.width = window.innerWidth;
+     SqueakJS.runSqueak('Cuis5.0-3121-32.image', sqCanvas, {
+         appName: "Cuis",
+         zip: ['assets/cuis.zip', 'assets/CuisV5.sources.zip']
+     });
+ };
+</script>
