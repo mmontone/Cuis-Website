@@ -92,7 +92,7 @@ permalink: /~a
                     (extract-title-and-content file)
                   (format s "* [~a](~a)~%" title (pathname-name file)))))))
     (alexandria:write-string-into-file index
-                                       (merge-pathnames "index.md" +jekyll-site-path+)
+                                       (merge-pathnames "docsindex.md" +jekyll-site-path+)
                                        :if-exists :supersede
                                        :if-does-not-exist :create)))
 

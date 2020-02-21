@@ -9,7 +9,7 @@ permalink: /documentation
 <div class="window-content">
 
   {% capture readme %}{% include_relative documentation.md %}{% endcapture %}
-  {% capture index %}{% include_relative index.md %}{% endcapture %}
+  {% capture index %}{% include_relative docsindex.md %}{% endcapture %}
   {% assign html = readme | append: index | markdownify %}  
 
   <div id="table-of-contents" class="toc" style="float: right;">
