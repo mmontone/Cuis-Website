@@ -13,9 +13,13 @@ permalink: /download
 <div style="padding: 20px;"></div>
 <div class="windowbar"><img src="{{'buttons.png' | relative_url}}">&nbsp;&nbsp;Download and Install Cuis</div>
 <div class="window-content">
-<div id="table-of-contents" class="toc" style="position:relative;float:right; clear:none; left: 130px;margin-left: -100px;">
-{% include toc.html html=html h_min=2 h_max=2 %}
-</div>
+  <div id="table-of-contents" class="toc" style="position:relative;float:right; clear:none; left: 130px;margin-left: -100px;">  
+    {% include toc.html html=html h_min=2 h_max=2 %}
+  </div>
+  <p>
+    <a class="button" target="_blank" href="{{'live' | relative_url}}">Run Cuis on the browser</a>
+  </p>
+  
 {{ html }}
 
 </div>

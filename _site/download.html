@@ -11,8 +11,8 @@
 ">
 
   <link rel="stylesheet" href="/Cuis-Website/css/main.css">
-  <link rel="canonical" href="http://cuis-smalltalk.github.io/Cuis-Website/download">
-  <link rel="alternate" type="application/rss+xml" title="Cuis Smalltalk" href="http://cuis-smalltalk.github.io/Cuis-Website/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/Cuis-Website/download">
+  <link rel="alternate" type="application/rss+xml" title="Cuis Smalltalk" href="http://localhost:4000/Cuis-Website/feed.xml">
 </head>
 
 
@@ -65,8 +65,8 @@
 <div style="padding: 20px;"></div>
 <div class="windowbar"><img src="/Cuis-Website/buttons.png">&nbsp;&nbsp;Download and Install Cuis</div>
 <div class="window-content">
-<div id="table-of-contents" class="toc" style="position:relative;float:right; clear:none; left: 130px;margin-left: -100px;">
-<ul>
+  <div id="table-of-contents" class="toc" style="position:relative;float:right; clear:none; left: 130px;margin-left: -100px;">  
+    <ul>
 <li><a href="#for-all-systems-create-project-folder-and-add-cuis-smalltalk">For all systems: Create project folder and add Cuis Smalltalk</a></li>
 <li><a href="#for-64-bits-linux-running-on-amdintel-x64-hardware">For 64 bits Linux running on AMD/Intel x64 hardware</a></li>
 <li><a href="#for-macosx">For MacOSX</a></li>
@@ -76,7 +76,11 @@
 <li><a href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 
-</div>
+  </div>
+  <p>
+    <a class="button" target="_blank" href="/Cuis-Website/live">Run Cuis on the browser</a>
+  </p>
+  
 <p>Cuis Smalltalk is available in 64 bits and 32 bits variants. It also available in the 32 bits V3 (pre Spur) image format. All three of them share the full source code and have essentially the same behavior, providing full portability for your code between them. These instructions are for the recommended format for each system, although most systems support all of them.</p>
 <p>In general, we recommend using VMs from <a href="https://github.com/OpenSmalltalk/opensmalltalk-vm/releases/latest">OpenSmalltalk GitHub releases</a>. In addition, the <a href="https://squeak.js.org">SqueakJS</a> JavaScript Squeak VM that can run in a web browser can run our -32 and our -v3 images.</p>
 <p>These instructions assume you have the Git code versioning system installed in your system. This has the advantage to set you up to easily contribute code back to Cuis packages, using Git pull requests. If you prefer not to use Git, see details at the end of this document. If you are on Windows or Mac, and prefer not using the command line, you might follow <a href="GettingStarted-NoCommandLine">Getting started using Mac Finder or Windows Explorer</a>.</p>
