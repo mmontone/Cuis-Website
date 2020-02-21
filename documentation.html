@@ -5,7 +5,7 @@ permalink: /documentation
 ---
 
 <div style="padding: 20px;"></div>
-<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Documentation</div>
+<div class="windowbar"><img src="{{ 'buttons.png' | relative_url}}">&nbsp;&nbsp;Documentation</div>
 <div class="window-content">
 
   {% capture readme %}{% include_relative documentation.md %}{% endcapture %}

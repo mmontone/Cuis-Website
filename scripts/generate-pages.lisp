@@ -45,7 +45,7 @@ permalink: /~a
 ---
 
 <div style=\"padding: 20px;\"></div>
-<div class=\"windowbar\"><img src=\"../buttons.png\">&nbsp;&nbsp;~a</div>
+<div class=\"windowbar\"><img src=\"{{'buttons.png' | relative_url}}\">&nbsp;&nbsp;~a</div>
 <div class=\"window-content\">
 
 {% capture markdown %}{% include_relative Documentation/~a %}{% endcapture %}
