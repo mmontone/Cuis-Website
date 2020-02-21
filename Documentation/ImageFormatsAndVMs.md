@@ -1,6 +1,5 @@
-# On Image format variants and supported VMs
 
-Most people don't need to care about image formats and just need to follow [Setting up and starting Cuis Smalltalk](https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev/blob/master/Documentation/GettingStarted.md). But if you have specific needs or are interested in this, keep reading.
+Most people don't need to care about image formats and just need to follow [Setting up and starting Cuis Smalltalk](https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev/blob/master/Documentation/GettingStarted). But if you have specific needs or are interested in this, keep reading.
 
 The Squeak Smalltalk family (of which Cuis is part) has used several image formats over the years. See [ImageFormat](http://wiki.squeak.org/squeak/6290). Cuis offers broad compatibility with available VMs and various tradeoffs between performance and VM complexity.
 

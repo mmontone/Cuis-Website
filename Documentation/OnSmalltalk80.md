@@ -1,4 +1,3 @@
-# Cuis is a Smalltalk-80 system. Why? #
 
 We say that Cuis is a Smalltalk-80 system. But Cuis is a significant evolution of Squeak, that is in turn a significant evolution of Smalltalk-80. Cuis is a 64 bit system that runs on modern platforms and makes good use of modern hardware. Cuis includes many aids, tools and ideas that didn't exist in Smalltalk-80. Our development community is open, diverse and distributed all over the world. So, 35 years after Smalltalk-80, what does it mean to say that Cuis is a Smalltalk-80 system?  
 

@@ -1,4 +1,3 @@
-## Specific instructions for running a 32Bit Cuis and VM in a 64Bit X64 Linux system
 On Linux 64 bit, if this is the first time you run Cuis Smalltalk 32 bit on this system, add 32 bit libraries. This was tested on Debian 8.
 
 ```

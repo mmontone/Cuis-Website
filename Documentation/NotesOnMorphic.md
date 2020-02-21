@@ -1,4 +1,3 @@
-Notes on Morphic
 ================
 
 Part of the Cuis development is the move to a new version of Morphic called *Morphic3*.
@@ -87,5 +86,5 @@ Note that only rectangles parallel to reference frame (Screen) can be represente
 How to analyse a Morphic GUI
 ----------------------------
 
-[These notes](HowToAnalyseAMorphicGUI.md) show you how an existing Morphic GUI like the FileList browser may be taken apart to see how it is constructed. It is possible to find out live which instances of model classes certain GUI elements activate.
+[These notes](HowToAnalyseAMorphicGUI) show you how an existing Morphic GUI like the FileList browser may be taken apart to see how it is constructed. It is possible to find out live which instances of model classes certain GUI elements activate.
 

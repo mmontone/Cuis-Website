@@ -41,9 +41,9 @@ Cuis is the common name of a [small animal](https://en.wikipedia.org/wiki/Southe
 ## Setting up Cuis in your machine
 [(back to ToC)](#table-of-contents)
 
-The quickest way to try Cuis (on Windows or MacOS) is by following [Getting started using Mac Finder or Windows Explorer](Documentation/GettingStarted-NoCommandLine.md) .
+The quickest way to try Cuis (on Windows or MacOS) is by following [Getting started using Mac Finder or Windows Explorer](GettingStarted-NoCommandLine) .
 
-If you are on a Linux system, or have git available and are comfortable with it, follow [Setting up and starting Cuis Smalltalk](Documentation/GettingStarted.md) .
+If you are on a Linux system, or have git available and are comfortable with it, follow [Setting up and starting Cuis Smalltalk](GettingStarted) .
 
 ## Learning about Cuis Smalltalk
 [(back to ToC)](#table-of-contents)
@@ -59,7 +59,7 @@ The user interface enables you to access most of the code and conduct Smalltalk 
 
 Cuis is maintained on https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev. The main meeting point for Cuis users and developers is the mail list https://lists.cuis.st/mailman/listinfo/cuis-dev. You can broswse the archives for a glimpse of our discussions. An older archive with pre-April-2019 messages can be found at http://cuis-smalltalk.org/pipermail/cuis-dev_cuis-smalltalk.org/.
 
-For the recommended way of handling your own projects based on Cuis, please read [Code Management in Cuis](Documentation/CodeManagementInCuis.md), about developing packages for Cuis, and [Using Git and GitHub to host and manage Cuis code](Documentation/CuisAndGitHub.md). While Cuis should work equally well with any file-based DVCS, we encourage the use of Git and GitHub.
+For the recommended way of handling your own projects based on Cuis, please read [Code Management in Cuis](CodeManagementInCuis), about developing packages for Cuis, and [Using Git and GitHub to host and manage Cuis code](CuisAndGitHub). While Cuis should work equally well with any file-based DVCS, we encourage the use of Git and GitHub.
 
 To contribute code to the base image, use the tools includede in Cuis, such as the ChangeSorter and the ChangeList to prepare ChangeSets and save them to file. Send the files as attachments to a message describing them to our mail list, so we all can review and discuss. We prefer this over git pull requests for changes to the base image. For changes to existing packages, or contribution of new packages, pull requests are OK.
 

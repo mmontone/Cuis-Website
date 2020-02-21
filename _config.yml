@@ -27,3 +27,17 @@ github_username:  "Cuis-Smalltalk"
 #   input: GFM
 
 markdown: CommonMarkGhPages
+
+plugins:
+  - jekyll-relative-links
+
+relative_links:
+  enabled:     true
+  collections: true
+
+permalink: pretty
+
+exclude:
+  - Documentation
+  - vendor/bundle
+  - scripts

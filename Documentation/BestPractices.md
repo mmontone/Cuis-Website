@@ -1,4 +1,3 @@
-# Best Practices in Cuis Smalltalk
 
 This document is meant to shine some light on certain practices within Cuis which we recommend following for various reasons. It tries to help to understand some not so obvious design decisions without linking to the cuis-dev mailinglist.
 

@@ -1,4 +1,3 @@
-Unicode support in Cuis 4.1
 ------------------------------
 
 ### Note
@@ -81,7 +80,7 @@ Read it back
           (FileStream fileNamed: 'UTF8abc-test.txt') contentsOfEntireFile
 ````
 
-gives the result below. The result appears correctly in the Cuis image but not in this UnicodeNotes.md file as this is a UTF8 file 
+gives the result below. The result appears correctly in the Cuis image but not in this UnicodeNotes file as this is a UTF8 file 
 and thus does not show ISO8859-15 properly.
 
       'abc �� &#945;&#946;&#947;'
@@ -97,7 +96,7 @@ gives the result
 
       'abc àè€ αβγ'
 
-which are the UTF8 bytes. Again here in this UnicodeNotes.md file this appears correctly whereas in the Cuis image it does not.
+which are the UTF8 bytes. Again here in this UnicodeNotes file this appears correctly whereas in the Cuis image it does not.
 
 
 
@@ -122,7 +121,7 @@ The default encoding for files is ISO8859-15.
 
 ### Note about this file
 
-Some characters might appear wrongly in this UnicodeNotes.md file. 
+Some characters might appear wrongly in this UnicodeNotes file. 
 It is recommended to do the tests mentioned above in an recent Cuis image with the UTF8 code units 
 and the constructed ISO8859 file.
 

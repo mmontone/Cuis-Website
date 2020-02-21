@@ -1,4 +1,3 @@
-For filesystem operations the original Squeak class ``FileDirectory`` and others have been replaced in 2015 by an adapted version of [FileMan](http://wiki.squeak.org/squeak/6333) (https://github.com/mumez/FileMan).
 The class ``FileDirectory`` is no longer available.
 
 Some typical FileMan code examples:
