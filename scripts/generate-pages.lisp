@@ -25,10 +25,7 @@
   (process-links s))
 
 (defun extract-title (str)
-  (with-input-from-string (s str)
-    (loop while (member (peek-char nil s) '(#\# #\space))
-         do (read-char s))
-    (read-line s)))
+  (string-trim '(#\space #\#) str))
 
 (defun process-links (content)
   (ppcre:regex-replace-all "\.md" content ""))
