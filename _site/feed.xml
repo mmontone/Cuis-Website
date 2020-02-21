@@ -4,10 +4,10 @@
     <title>Cuis Smalltalk</title>
     <description>Cuis is an Open Source, multiplatform Smalltalk-80 system.
 </description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 21 Feb 2020 00:24:54 -0300</pubDate>
-    <lastBuildDate>Fri, 21 Feb 2020 00:24:54 -0300</lastBuildDate>
+    <link>http://cuis-smalltalk.github.io/Cuis-Website/</link>
+    <atom:link href="http://cuis-smalltalk.github.io/Cuis-Website/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 21 Feb 2020 09:42:22 -0300</pubDate>
+    <lastBuildDate>Fri, 21 Feb 2020 09:42:22 -0300</lastBuildDate>
     <generator>Jekyll v3.8.6</generator>
     
       <item>
@@ -23,8 +23,8 @@
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Wed, 12 Feb 2020 10:35:50 -0300</pubDate>
-        <link>http://localhost:4000/jekyll/update/2020/02/12/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll/update/2020/02/12/welcome-to-jekyll/</guid>
+        <link>http://cuis-smalltalk.github.io/Cuis-Website/jekyll/update/2020/02/12/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">http://cuis-smalltalk.github.io/Cuis-Website/jekyll/update/2020/02/12/welcome-to-jekyll/</guid>
         
         
         <category>jekyll</category>
