@@ -1,4 +1,3 @@
------------------------------
 
 The following is an illustration how any Morphic GUI may be "deconstructed" to find out what its parts are and how they operate on model classes.
 

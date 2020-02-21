@@ -19,7 +19,11 @@
   (with-open-file (f file)
     (values 
      (extract-title (read-line f))
-     (process-content (alexandria:read-stream-content-into-string f)))))
+     (process-content
+      (progn
+        (when (equalp (peek-char nil f) #\-)
+          (read-line f))
+        (alexandria:read-stream-content-into-string f))))))
 
 (defun process-content (s)
   (process-links s))
