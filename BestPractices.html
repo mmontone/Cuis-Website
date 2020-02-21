@@ -1,0 +1,22 @@
+---
+
+layout: default
+
+title: Best Practices in Cuis Smalltalk
+
+permalink: /BestPractices
+---
+
+<div style="padding: 20px;"></div>
+<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Best Practices in Cuis Smalltalk</div>
+<div class="window-content">
+
+{% capture markdown %}{% include_relative Documentation/BestPractices.md %}{% endcapture %}
+{% assign html = markdown | markdownify %}
+
+<div id="table-of-contents" class="toc" style="float: right;">
+{% include toc.html html=html h_min=2 h_max=2 %}
+</div>
+
+{{ html }}
+</div>

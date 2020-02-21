@@ -1,0 +1,22 @@
+---
+
+layout: default
+
+title: For filesystem operations the original Squeak class ``FileDirectory`` and others have been replaced in 2015 by an adapted version of [FileMan](http://wiki.squeak.org/squeak/6333) (https://github.com/mumez/FileMan).
+
+permalink: /FileSystemOperations
+---
+
+<div style="padding: 20px;"></div>
+<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;For filesystem operations the original Squeak class ``FileDirectory`` and others have been replaced in 2015 by an adapted version of [FileMan](http://wiki.squeak.org/squeak/6333) (https://github.com/mumez/FileMan).</div>
+<div class="window-content">
+
+{% capture markdown %}{% include_relative Documentation/FileSystemOperations.md %}{% endcapture %}
+{% assign html = markdown | markdownify %}
+
+<div id="table-of-contents" class="toc" style="float: right;">
+{% include toc.html html=html h_min=2 h_max=2 %}
+</div>
+
+{{ html }}
+</div>

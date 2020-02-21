@@ -1,0 +1,22 @@
+---
+
+layout: default
+
+title: A short history of Cuis #
+
+permalink: /CuisHistory
+---
+
+<div style="padding: 20px;"></div>
+<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;A short history of Cuis #</div>
+<div class="window-content">
+
+{% capture markdown %}{% include_relative Documentation/CuisHistory.md %}{% endcapture %}
+{% assign html = markdown | markdownify %}
+
+<div id="table-of-contents" class="toc" style="float: right;">
+{% include toc.html html=html h_min=2 h_max=2 %}
+</div>
+
+{{ html }}
+</div>

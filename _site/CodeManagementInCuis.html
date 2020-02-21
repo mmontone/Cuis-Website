@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Managing your code in Cuis</title>
+  <meta name="description" content="Cuis is an Open Source, multiplatform Smalltalk-80 system.
+">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/CodeManagementInCuis">
+  <link rel="alternate" type="application/rss+xml" title="Cuis Smalltalk" href="http://localhost:4000/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Cuis Smalltalk</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link" href="/download">Download</a>
+        <a class="page-link" href="/documentation">Documentation</a>
+        <a class="page-link" href="/about">About</a>        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div style="padding: 20px;"></div>
+<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Managing your code in Cuis</div>
+<div class="window-content">
+
+
+
+
+<div id="table-of-contents" class="toc" style="float: right;">
+<ul>
+<li><a href="#packages">Packages</a></li>
+<li><a href="#changes-to-the-cuis-base-image">Changes to the Cuis base image</a></li>
+<li><a href="#loading-changeset-files-into-cuis">Loading ChangeSet files into Cuis</a></li>
+</ul>
+
+</div>
+
+<p>Cuis includes tools and procedures for managing Smalltalk code. Code that is not part of the Cuis Core image itself, like applications, frameworks and libraries, should be stored in <em>Packages</em>. New code that are meant as patches, fixes or additions; that could eventually become part of Cuis itself, is not part of any <em>Package</em>, and is therefore automatically stored in <em>ChangeSets</em>.</p>
+<h2 id="packages">Packages</h2>
+<p>Let's start with <em>Packages</em>. The Package implementation in Cuis is based on PackageInfo, the standard way to specify packages in Squeak and its derivatives, and used, for example, by Monticello. It uses Package names to specify prefixes for Class and Method categories. Classes and Methods whose categories match a Package's prefixes belong in that Package. More details about how PackageInfo decides what code belongs in a package are available at http://wiki.squeak.org/squeak/3329 .</p>
+<p>To install packages <em>(.pck.st files)</em> in Cuis, use the <strong>FileList</strong>, navigate to the appropriate directory (on disk, or in a GitHub repository, etc), select the package file and click on <strong>[Install Package]</strong>.</p>
+<p>Cuis includes a tool to manage installed <em>Packages</em>. It is at <em>World / Open / Installed Packages</em>. To create a new package (instead of installing an existing one from a file), click on <strong>[Create Package]</strong> This creates a new package, and associates with it all the existing code in the image that matches the package name.</p>
+<p>The operations available on installed or newly created packages are:</p>
+<p><strong>[Save]</strong> Saves a package on the file system. Overwrites any existing version. It is good to save the package from time to time, to reduce the risk of losing code.</p>
+<p><strong>[Delete]</strong> Removes the Package instance from the image. Does not remove any code. This means, effectively, to merge back the code into Cuis.</p>
+<p><strong>[Browse unsaved Changes]</strong> This opens a ChangeSorter on the ChangeSet that captures all the changes done to the Package since it was last saved. Therefore it shows the work done on the package that would be lost if the package is not saved.</p>
+<p><strong>[Browse package code]</strong> This opens a Class Browser that only shows the code that belongs in the package. This is useful for working on a package, or studying it.</p>
+<p><strong>[Add requirement]</strong> This opens a select list of loaded packages.  Each package provides a <em>Feature</em>.  You can CANCEL, require the current Cuis base version (at a minimum) or require any of the packages on the list.  Required packages will be loaded before the selected package (<strong>Feature require: #'your-package'.</strong>).  When a package is selected, the lower browser pane shows its requirents, which may be deleted.  Don't forget to <em>Save</em> your package after adding or deleting  requirements!</p>
+<p>The tool shows, for each Package, the name, whether it is dirty (has unsaved changes) and the file it was installed from / saved to.</p>
+<p>Handling Packages like this, Cuis behaves as a sort of document editor (like, for example a regular text editor) whose documents are <em>Package</em> files <em>(.pck.st)</em>. Cuis doesn't handle Package versions, ancestries, etc. If versioning of Packages is desired, the best is to use a versioning file repository, such as Git or Mercurial. The recommendation is to use a GitHub repository with a name beginning with 'Cuis-Smalltalk-', so it will be easy for anybody to find it. Cuis <em>Package</em> files are uncompressed, use Lf (ASCII 10) as newLine, and are encoded in ISO 8859-15. This means they are Git friendly, and Git/GitHub can diff and merge them, and browse them with syntax highlighting.</p>
+<p>This is not unlike using Git or GitHub with a file-based development environment such as Eclipse or a text editor. Like Cuis, these tools don't do version handling themselves, they just load and save files; and let Git do its magic.</p>
+<h2 id="changes-to-the-cuis-base-image">Changes to the Cuis base image</h2>
+<p>The way <em>ChangeSets</em> are created and managed in Cuis is different from Squeak. This was done to make ChangeSets a good way to manage changes to the base Cuis Core image, while keeping code in Packages out of the way, so they don't get mixed together.</p>
+<p>What is not in a Package belongs (at least temporarily) to the Cuis Core image. Such code is automatically captured in a <em>ChangeSet</em>. The ChangeSet for Core changes is created automatically and named like <em>&quot;1243-CuisCore-JuanVuletich-2012Apr03-22h50m&quot;</em>. The number at the beginning is the next number for the Cuis update stream, and is provided only as a suggestion. The &quot;CuisCore&quot; part is to reveal that the code belongs in the base image and not in some package. Then we have author name and date / time of creation. These <em>ChangeSets</em> are created automatically. There is no longer a way to manually create them, or make them &quot;current&quot; or &quot;active&quot;. It is best to rename them, replacing <em>'CuisCore'</em> with some meaningful name. These <em>ChangeSets</em> will not capture any code that belongs in a Package.</p>
+<p>Opening a <strong>Change Sorter</strong> will show the CuisCore change set. This is useful, for example, to check that no code that was intended for a Package ends here by mistake (because of the wrong class or method category). But it is also useful when doing changes to the base system. Now, we can do changes both to the base system and to a number of packages, all in the same session, without having to be careful about selecting the proper change set before saving a method: The code is automatically added to the proper <em>Package</em> or <em>ChangeSet</em>, simply following the class or method category. Gone are the days of messed up change sets and lost code!</p>
+<p>When the changes to the base system are complete, it is a good time to review the CuisCore change set and, maybe remove from it changes that we don't want to keep (for example, experiments, halts, etc). Then, just do right click / File out and remove. This saves the <em>ChangeSet</em> on disk. It also removes it from the <strong>ChangeSorter</strong> (but it doesn't remove any code). This is good, because the next changes done will end in a new CuisCore change set, and there's no risk of having undesired changes in the old one. As changes to the base image progress, and several CuisCore <em>ChangeSets</em> are saved to disk, these numbered files are created in sequence. They will be ready to be loaded back in proper order in a fresh Cuis image, or to be sent to Cuis maintainers for integration in the update stream and in next releases of Cuis.</p>
+<h2 id="loading-changeset-files-into-cuis">Loading ChangeSet files into Cuis</h2>
+<p>There are two ways to load <em>ChangeSet</em> files (.cs): <strong>[FileIn]</strong> and <strong>[Install]</strong>.</p>
+<p><strong>[FileIn]</strong> loads the code without creating a new <em>ChangeSet</em> object. This means that changes that belong in the base image (and not in a package) will be added to the current ChangeSet for Cuis core changes, as if they were done by the user. This is appropriate when we are combining code from more than one source into a single ChangeSet. Any change that belongs in an installed package will be added to it, and the package will appear as dirty.</p>
+<p><strong>[Install]</strong> loads the code into a separate <em>ChangeSet</em> object (viewable in the <strong>ChangeSorter</strong> tool). This is appropriate for loading Cuis updates, or other code that we are not authoring, as it doesn't add new items (class or method definitions) to the current ChangeSet for our changes to Cuis. Usually any ChangeSets should be installed before doing changes to the image. The reason is that an installed ChangeSet could overwrite changes done by you, or packages you have installed. If this is the case, the affected packages would appear as dirty, and your change set would include any installed changes (that don't belong in a package). Be careful when saving packages or change sets if this was the case!</p>
+
+</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Cuis Smalltalk</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Cuis Smalltalk</li>
+          <li><a href="mailto:cuis-dev@cuis-smalltalk.org">cuis-dev@cuis-smalltalk.org</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/Cuis-Smalltalk"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">Cuis-Smalltalk</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Cuis is an Open Source, multiplatform Smalltalk-80 system.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

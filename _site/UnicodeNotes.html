@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Unicode support in Cuis 4.1</title>
+  <meta name="description" content="Cuis is an Open Source, multiplatform Smalltalk-80 system.
+">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://localhost:4000/UnicodeNotes">
+  <link rel="alternate" type="application/rss+xml" title="Cuis Smalltalk" href="http://localhost:4000/feed.xml">
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Cuis Smalltalk</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link" href="/download">Download</a>
+        <a class="page-link" href="/documentation">Documentation</a>
+        <a class="page-link" href="/about">About</a>        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div style="padding: 20px;"></div>
+<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Unicode support in Cuis 4.1</div>
+<div class="window-content">
+
+
+
+
+<div id="table-of-contents" class="toc" style="float: right;">
+
+
+</div>
+
+<hr />
+<h3 id="note">Note</h3>
+<p>This document has been updated as Juan Vuletich has implemented Unicode
+related changes with change sets 1590 and 1600</p>
+<p>https://github.com/jvuletich/Cuis/blob/master/UpdatesSinceLastRelease/1590-InvertibleUTF8Conversion-JuanVuletich-2013Feb08-08h11m-jmv.1.cs.st</p>
+<p>https://github.com/jvuletich/Cuis/blob/master/UpdatesSinceLastRelease/1600-WindowsClipboardFix-JuanVuletich-2013Feb14-14h37m-jmv.1.cs.st</p>
+<p>Note: More checks needed if everything is updated correctly in this file. Some of the Cuis methods cited here have changed.</p>
+<h3 id="introduction">Introduction</h3>
+<p>Cuis has limited Unicode support.</p>
+<p>Externally, this means for the clipboard UTF8 is used.
+For files it is possible to read and write UTF8 encodes text files losslessly.
+Characters which are in the ISO8859-15 character set can be dealt with directly as
+internally the 8 bit ISO8959-15 convention is used (http://en.wikipedia.org/wiki/ISO/IEC_8859-15). This means less
+than 255 code points.</p>
+<p>The rest is converted to numerical character entities when reading from a file or when text is pasted through the clipboard.</p>
+<p>Note: if you need to display non-latin characters (Japanese, Chinese, Cyrillic, Tamil,...) there is an experimental 'UniCodes' package at https://github.com/KenDickey/Cuis-Smalltalk-Unicode.</p>
+<h3 id="construction-of-example-data-for-utf8-test">Construction of example data for UTF8 test</h3>
+<p>With the on-line converter http://rishida.net/tools/conversion/ example data may be constructed for tests.</p>
+<p>abc àè€ αβγ (abc the a with gravis, e with gravis, euro sign, alpha, beta, gamma)</p>
+<p>Decimal NCRs</p>
+<pre><code>abc &amp;#224;&amp;#232;&amp;#8364; &amp;#945;&amp;#946;&amp;#947;
+</code></pre>
+<p>Hexadecimal NCRs</p>
+<pre><code>abc &amp;#x00E0;&amp;#x00E8;&amp;#x20AC; &amp;#x03B1;&amp;#x03B2;&amp;#x03B3;
+</code></pre>
+<p>UTF8 code units</p>
+<pre><code>61 62 63 20 C3 A0 C3 A8 E2 82 AC 20 CE B1 CE B2 CE B3
+</code></pre>
+<p>UTF8 code units as Smalltalk literal array</p>
+<pre><code>#[16r61 16r62 16r63 16r20 16rC3 16rA0 16rC3 16rA8 16rE2 
+16r82 16rAC 16r20 16rCE 16rB1 16rCE 16rB2 16rCE 16rB3]
+</code></pre>
+<p>JavaScript escapes</p>
+<pre><code>abc \u00E0\u00E8\u20AC \u03B1\u03B2\u03B3
+</code></pre>
+<p>Write the data above as a UTF8 encoded file in binary mode.</p>
+<div class="language-smalltalk highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="p">|</span><span class="nv"> stream </span><span class="p">|</span>
+
+     <span class="nv">stream</span> <span class="o">:=</span> <span class="p">(</span><span class="nc">FileStream</span> <span class="nf">newFileNamed:</span> <span class="s">'UTF8abc-test.txt'</span><span class="p">)</span> <span class="nf">binary</span><span class="p">.</span>
+     <span class="nv">stream</span> <span class="nf">nextPutAll:</span> <span class="err">#</span><span class="p">[</span><span class="m">16r61</span> <span class="m">16r62</span> <span class="m">16r63</span> <span class="m">16r20</span> <span class="m">16</span><span class="nf">rC3</span> <span class="m">16</span><span class="nf">rA0</span> <span class="m">16</span><span class="nf">rC3</span> <span class="m">16</span><span class="nf">rA8</span> <span class="m">16</span><span class="nf">rE2</span> 
+	                              <span class="m">16r82</span> <span class="m">16</span><span class="nf">rAC</span> <span class="m">16r20</span> <span class="m">16</span><span class="nf">rCE</span> <span class="m">16</span><span class="nf">rB1</span> <span class="m">16</span><span class="nf">rCE</span> <span class="m">16</span><span class="nf">rB2</span> <span class="m">16</span><span class="nf">rCE</span> <span class="m">16</span><span class="nf">rB3</span><span class="p">].</span>
+     <span class="nv">stream</span> <span class="nf">close</span><span class="p">.</span>
+</code></pre></div></div>
+<p>Read it back</p>
+<div class="language-smalltalk highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">String</span> <span class="nf">fromUtf8:</span>
+          <span class="p">(</span><span class="nc">FileStream</span> <span class="nf">fileNamed:</span> <span class="s">'UTF8abc-test.txt'</span><span class="p">)</span> <span class="nf">contentsOfEntireFile</span>
+</code></pre></div></div>
+<p>gives the result below. The result appears correctly in the Cuis image but not in this UnicodeNotes file as this is a UTF8 file
+and thus does not show ISO8859-15 properly.</p>
+<pre><code>  'abc �� &amp;#945;&amp;#946;&amp;#947;'
+</code></pre>
+<p>Whereas</p>
+<div class="language-smalltalk highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="p">(</span><span class="nc">FileStream</span> <span class="nf">fileNamed:</span> <span class="s">'UTF8abc-test.txt'</span><span class="p">)</span> <span class="nf">contentsOfEntireFile</span>     
+</code></pre></div></div>
+<p>gives the result</p>
+<pre><code>  'abc àè€ αβγ'
+</code></pre>
+<p>which are the UTF8 bytes. Again here in this UnicodeNotes file this appears correctly whereas in the Cuis image it does not.</p>
+<h3 id="test-with-iso8859-15-text-file">Test with ISO8859-15 text file</h3>
+<div class="language-smalltalk highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="p">|</span><span class="nv"> stream </span><span class="p">|</span>
+
+     <span class="nv">stream</span>  <span class="o">:=</span> <span class="p">(</span><span class="nc">FileStream</span> <span class="nf">newFileNamed:</span> <span class="s">'ISO8859-15abc-test.txt'</span><span class="p">).</span>
+     <span class="m">32</span> <span class="nf">to:</span> <span class="m">255</span> <span class="nf">do:</span> <span class="p">[</span> <span class="o">:</span><span class="nv">code</span> <span class="p">|</span> <span class="nv">stream</span> <span class="nf">nextPut:</span> <span class="nv">code</span> <span class="nf">asCharacter</span><span class="p">].</span>
+     <span class="nv">stream</span> <span class="nf">close</span><span class="p">.</span>
+</code></pre></div></div>
+<p>Reading it back</p>
+<div class="language-smalltalk highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="p">(</span><span class="nc">FileStream</span> <span class="nf">fileNamed:</span> <span class="s">'ISO8859-15abc-test.txt'</span><span class="p">)</span> <span class="nf">contentsOfEntireFile</span>
+</code></pre></div></div>
+<p>The default encoding for files is ISO8859-15.</p>
+<h3 id="note-about-this-file">Note about this file</h3>
+<p>Some characters might appear wrongly in this UnicodeNotes file.
+It is recommended to do the tests mentioned above in an recent Cuis image with the UTF8 code units
+and the constructed ISO8859 file.</p>
+<h3 id="implementation-in-cuis-41">Implementation in Cuis 4.1</h3>
+<h4 id="class-character">Class Character</h4>
+<div class="language-smalltalk highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">Magnitude</span> <span class="nf">subclass:</span> <span class="ss">#Character</span>
+	<span class="nf">instanceVariableNames:</span> <span class="s">'value'</span>
+	<span class="nf">classVariableNames:</span> <span class="s">'CharacterTable ClassificationTable LetterBits LowercaseBit 
+	                     UnaccentedTable UnicodeCodePoints UppercaseBit'</span>
+	<span class="nf">poolDictionaries:</span> <span class="s">''</span>
+	<span class="nf">category:</span> <span class="s">'Kernel-Text'</span>
+</code></pre></div></div>
+<p>Comment:
+I represent a character by storing its associated Latin-9 code (ISO 8859-15). My instances are created uniquely,
+so that all instances of a character ($R, for example) are identical.</p>
+<p>The class variable UnicodeCodePoints contains the Unicode values with which Cuis can deal. It is initialized with</p>
+<div class="language-smalltalk highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">Character</span> <span class="nf">initializeUnicodeCodePoints</span>
+</code></pre></div></div>
+<p>In a pristine Cuis image initialization has been done.</p>
+<pre><code>initializeUnicodeCodePoints
+
+&quot;Initialize the table of Unicode code points&quot;
+UnicodeCodePoints _ Array new: 256.
+0 to: 255 do: [ :code |
+	UnicodeCodePoints at: code + 1 put: code ].
+
+&quot;The following codes are different in ISO 8859-15 from those in ISO 8859-1,
+so the character code is not equal to the Unicode code point&quot;
+UnicodeCodePoints at: 16rA4+1 put: 16r20AC.		&quot;euro sign&quot;
+UnicodeCodePoints at: 16rA6+1 put: 16r160.		&quot;latin capital letter S with caron&quot;
+UnicodeCodePoints at: 16rA8+1 put: 16r161.		&quot;latin small letter s with caron&quot;
+UnicodeCodePoints at: 16rB4+1 put: 16r17D.		&quot;latin capital letter Z with caron&quot;
+UnicodeCodePoints at: 16rB8+1 put: 16r17E.		&quot;latin small letter z with caron&quot;
+UnicodeCodePoints at: 16rBC+1 put: 16r152.		&quot;latin capital ligature OE&quot;
+UnicodeCodePoints at: 16rBD+1 put: 16r153.		&quot;latin small ligature oe&quot;
+UnicodeCodePoints at: 16rBE+1 put: 16r178.		&quot;latin capital letter Y with diaeresis&quot;
+</code></pre>
+<p>Method Character class&gt;&gt;unicodeCodePoint:</p>
+<pre><code>unicodeCodePoint: codePoint
+	&quot;
+	Answer nil if the Unicode codePoint is not a valid ISO 8859-15 character
+
+	self assert: (Character unicodeCodePoint: 16r41) = $A.
+	self assert: (Character unicodeCodePoint: 16r20AC) = $€.
+	&quot;
+	^ (self iso8859s15CodeForUnicodeCodePoint: codePoint)
+		ifNotNil: [ :code | Character value: code ]
+</code></pre>
+<p>Method Character class&gt;&gt;iso8859s15CodeForUnicodeCodePoint:</p>
+<pre><code>iso8859s15CodeForUnicodeCodePoint: codePoint
+&quot;
+Answer nil if the Unicode codePoint is not a valid ISO 8859-15 character
+
+self assert: (Character iso8859s15CodeForUnicodeCodePoint: 16r41) = $A iso8859s15Code.
+self assert: (Character iso8859s15CodeForUnicodeCodePoint: 16r20AC) = $€ iso8859s15Code.
+&quot;
+| code |
+code _ (UnicodeCodePoints indexOf: codePoint) -1.
+code = -1 ifTrue: [ ^nil ].
+^code
+</code></pre>
+<p>In Cuis 4.1 the value instance variable for instances of Character is restricted to be 8 bit only.
+But the value as such is a 32bit integer value.</p>
+<p>The implementation of Character class&gt;&gt;value:</p>
+<pre><code>value: anInteger 
+    &quot;Answer the Character whose value is anInteger.&quot;
+
+    ^CharacterTable at: anInteger + 1
+</code></pre>
+<p>The CharacterTable class variable has 256 entries and a Character <em>must</em> be included there.</p>
+<p>Contrariwise in Squeak 4.4. (and earlier versions) the method Character class&gt;&gt; value: is implemented as</p>
+<pre><code>value: anInteger 
+    &quot;Answer the Character whose value is anInteger.&quot;
+
+    anInteger &gt; 255 ifTrue: [^self basicNew setValue: anInteger].
+    ^ CharacterTable at: anInteger + 1.
+</code></pre>
+<p>Method Character class&gt;&gt;utf8BytesOfUnicodeCodePoint:</p>
+<pre><code>utf8BytesOfUnicodeCodePoint: aCodePoint
+
+	^ ByteArray streamContents: [ :strm |
+		Character
+			evaluate: [ :byte |
+				strm nextPut: byte ]
+			withUtf8BytesOfUnicodeCodePoint: aCodePoint ]
+</code></pre>
+<p>Method Character class&gt;&gt;evaluate:withUtf8BytesOfUnicodeCodePoint:</p>
+<pre><code>evaluate: aBlock withUtf8BytesOfUnicodeCodePoint: aCodePoint
+	&quot;See senders for typical usage&quot;
+
+	| mask nBytes shift |
+	aCodePoint &lt; 128 ifTrue: [
+		^aBlock value: aCodePoint ].
+	nBytes _ aCodePoint highBit + 3 // 5.
+	mask _ #(128 192 224 240 248 252 254 255) at: nBytes.
+	shift _ nBytes - 1 * -6.
+	aBlock value: (aCodePoint bitShift: shift) + mask.
+	2 to: nBytes do: [ :i | 
+		shift _ shift + 6.
+		aBlock value: ((aCodePoint bitShift: shift) bitAnd: 63) + 128 ]
+</code></pre>
+<p>Method Character class&gt;&gt;nextUnicodeCodePointFromUtf8:</p>
+<pre><code>nextUnicodeCodePointFromUtf8: anUtf8Stream
+	&quot;anUtf8Stream can be over a ByteArray
+	Answer nil if conversion not possible, because of invalid UTF-8&quot;
+
+	| byte1 byte2 byte3 byte4 |
+	byte1 _ anUtf8Stream next asInteger.
+	byte1 &lt; 128 ifTrue: [	&quot;single byte&quot;
+		^byte1 ].
+
+	&quot;At least 2 bytes&quot;
+	byte2 _ anUtf8Stream next asInteger.
+	(byte2 bitAnd: 16rC0) = 16r80 ifFalse: [^nil]. &quot;invalid UTF-8&quot;
+	(byte1 bitAnd: 16rE0) = 192 ifTrue: [ &quot;two bytes&quot;
+		^ ((byte1 bitAnd: 31) bitShift: 6) + (byte2 bitAnd: 63) ].
+
+	&quot;At least 3 bytes&quot;
+	byte3 _ anUtf8Stream next asInteger.
+	(byte3 bitAnd: 16rC0) = 16r80 ifFalse: [^nil]. &quot;invalid UTF-8&quot;
+	(byte1 bitAnd: 16rF0) = 224 ifTrue: [ &quot;three bytes&quot;
+		^ ((byte1 bitAnd: 15) bitShift: 12) + ((byte2 bitAnd: 63) bitShift: 6) + (byte3 bitAnd: 63) ].
+
+	&quot;4 bytes&quot;
+	byte4 _ anUtf8Stream next asInteger.
+	(byte4 bitAnd: 16rC0) = 16r80 ifFalse: [^nil]. &quot;invalid UTF-8&quot;
+	(byte1 bitAnd: 16rF8) = 240 ifTrue: [  &quot;four bytes&quot;
+		^ ((byte1 bitAnd: 16r7) bitShift: 18) + ((byte2 bitAnd: 63) bitShift: 12) + ((byte3 bitAnd: 63) bitShift: 6) + (byte4 bitAnd: 63) ].
+
+	^nil
+</code></pre>
+<h4 id="class-string">Class String</h4>
+<pre><code>ArrayedCollection variableByteSubclass: #String
+instanceVariableNames: ''
+classVariableNames: 'CSLineEnders CSNonSeparators CSSeparators CaseInsensitiveOrder
+                     CaseSensitiveOrder LowercasingTable Tokenish UppercasingTable'
+poolDictionaries: ''
+category: 'Kernel-Text'
+</code></pre>
+<p>Comment:
+A String is an indexed collection of Characters, compactly encoded as 8-bit bytes.</p>
+<p>String support a vast array of useful methods, which can best be learned by browsing and trying out
+examples as you find them in the code.</p>
+<p>Here are a few useful methods to look at...
+String match:
+String contractTo:</p>
+<p>String also inherits many useful methods from its hierarchy, such as
+SequenceableCollection ,
+SequenceableCollection copyReplaceAll:with:</p>
+<p>Method String&gt;&gt;asUtf8</p>
+<pre><code>asUtf8
+	&quot;Convert the given string to UTF-8 from the internal encoding: ISO Latin 9 (ISO 8859-15)
+	Answer a ByteArray.
+
+	See #fromUtf8: &quot;
+
+	^self asUtf8: false
+</code></pre>
+<p>Method String&gt;&gt;asUtf8</p>
+<pre><code>asUtf8: convertEmbeddedNCRs
+	&quot;Convert the given string to UTF-8 from the internal encoding: ISO Latin 9 (ISO 8859-15)
+	Answer a ByteArray.
+
+	If convertEmbeddedNCRs, then convert embedded NCRs such as '&amp;#956;' (decimal) or '&amp;#x03BC;' (hex) to CodePoints.
+	See http://en.wikipedia.org/wiki/Numeric_character_reference
+
+
+	Note: The conversion of NCRs is reversible. See #fromUtf8:hex:
+	This allows handling the full Unicode in Cuis tools, that can only display the Latin alphabet, by editing the NCRs.
+	The conversions can be done when reading / saving files, or when pasting from Clipboard and storing back on it.&quot;
+
+	^ByteArray streamContents: [ :outStream | | inStream nextChar prevPos maybeUnicodeNCR ncrSize codePoint |
+		inStream _ self readStream.
+		[ inStream atEnd ] whileFalse: [
+			nextChar _ inStream next.
+		    	(convertEmbeddedNCRs and: [ nextChar = $&amp; ])
+ 		   		ifTrue: [
+					prevPos _ inStream position.
+					maybeUnicodeNCR _ inStream next: 9.
+					maybeUnicodeNCR first = $# ifTrue: [
+		  				ncrSize _ maybeUnicodeNCR indexOf: $;.
+						ncrSize = 0
+							ifFalse: [
+								codePoint _ maybeUnicodeNCR second = $x
+									ifTrue: [ ('16r', (maybeUnicodeNCR copyFrom: 3 to: ncrSize) asUppercase) asNumber ]
+		   							ifFalse: [ (maybeUnicodeNCR copyFrom: 2 to: ncrSize) asNumber ]]
+							ifTrue: [
+								&quot;Not an NCR after all. Just add the $&amp; and continue from there&quot;
+								codePoint _ nextChar unicodeCodePoint ].
+						Character
+							evaluate: [ :byte | outStream nextPut: byte ]
+							withUtf8BytesOfUnicodeCodePoint: codePoint.
+ 						inStream position: prevPos + ncrSize ]]
+				ifFalse: [
+					codePoint _ nextChar unicodeCodePoint.
+					Character
+						evaluate: [ :byte | outStream nextPut: byte ]
+						withUtf8BytesOfUnicodeCodePoint: codePoint ]]]
+</code></pre>
+<p>String class&gt;&gt;fromUtf8:</p>
+<pre><code>fromUtf8: aByteArray
+	&quot;Convert the given bytes from UTF-8 to  the internal encoding: ISO Latin 9 (ISO 8859-15).
+	See #asUtf8 &quot;
+	&quot;For any unicode chars not in ISO Latin 9 (ISO 8859-15), embed an NCR.
+	See http://en.wikipedia.org/wiki/Numeric_character_reference&quot;
+
+	^self fromUtf8: aByteArray hex: false
+</code></pre>
+<p>String class&gt;&gt;fromUtf8:hex:</p>
+<pre><code>fromUtf8: aByteArray hex: useHex
+	&quot;Convert the given string from UTF-8 to  the internal encoding: ISO Latin 9 (ISO 8859-15)&quot;
+	&quot;For unicode chars not in ISO Latin 9 (ISO 8859-15), embed Decimal NCRs or Hexadecimal NCRs according to useHex.
+
+	See http://en.wikipedia.org/wiki/Numeric_character_reference
+	See http://rishida.net/tools/conversion/. Tests prepared there.
+
+	Note: The conversion of NCRs is reversible. See #asUtf8:
+	This allows handling the full Unicode in Cuis tools, that can only display the Latin alphabet, by editing the NCRs.
+	The conversions can be done when reading / saving files, or when pasting from Clipboard and storing back on it.&quot;
+
+	^String streamContents: [ :strm | | bytes |
+		bytes _ aByteArray readStream.
+		[ bytes atEnd ] whileFalse: [
+			(Character nextUnicodeCodePointFromUtf8: bytes) ifNotNil: [ :codePoint | 
+				(Character unicodeCodePoint: codePoint)
+					ifNotNil: [ :iso8859m15code | strm nextPut: iso8859m15code]
+					ifNil: [
+						useHex
+							ifTrue: [
+								strm nextPutAll: '&amp;#x'.
+								codePoint printOn: strm base: 16 length: 4 padded: true.
+								strm nextPut: $; ]
+							ifFalse: [
+								strm nextPutAll: '&amp;#'.
+								codePoint printOn: strm base: 10.
+								strm nextPut: $; ]]]]] 
+</code></pre>
+<p>Line endings, method String&gt;&gt;withCuisLineEndings</p>
+<pre><code>withCuisLineEndings
+    &quot;assume the string is textual, and that CR, LF, and CRLF are all 
+    valid line endings.  Replace each occurence with a single Lf
+    ('aLine', String crlfString, 'anotherOne') withCuisLineEndings
+    &quot;
+
+^ self withLineEndings: String newLineString
+</code></pre>
+<h3 id="history">History</h3>
+<p>Unicode support needs a VM which supports Unicode.
+A Squeak VM for Windows which supports Unicode was introduced in June 2007 by Andreas Raab and Chris
+Petsos</p>
+<p>http://forum.world.st/New-Win32-VM-m17n-testers-needed-tc63730.html#none</p>
+<h3 id="references">References</h3>
+<ul>
+<li>http://www.unicode.org/versions/Unicode6.2.0/</li>
+<li>http://en.wikipedia.org/wiki/ISO/IEC_8859-15</li>
+<li>http://en.wikipedia.org/wiki/Plane_%28Unicode%29#Basic_Multilingual_Plane</li>
+<li>http://wiki.squeak.org/squeak/857</li>
+<li>http://wiki.squeak.org/squeak/919</li>
+<li>http://www.is.titech.ac.jp/~ohshima/squeak/m17npaper/index.html</li>
+<li>http://www.is.titech.ac.jp/~ohshima/squeak/squeak-multilingual-e.html</li>
+<li>https://code.google.com/p/chibi-scheme/source/browse/lib/scheme/char.sld</li>
+<li>Unicode treatment in the Scheme language: http://scheme-reports.org/2012/working-group-1.html</li>
+<li>http://www.cprogramming.com/tutorial/unicode.html; Unicode in C and C++: What You Can Do About It Today
+by Jeff Bezanson; keywords: Encoding, display, input method, internationalization (i18n), lexicography, UTF-8</li>
+<li>http://docs.python.org/2/howto/unicode.html support for either 16bit or 32 bit Unicode values, depending on how Python was compiled.</li>
+</ul>
+
+</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Cuis Smalltalk</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Cuis Smalltalk</li>
+          <li><a href="mailto:cuis-dev@cuis-smalltalk.org">cuis-dev@cuis-smalltalk.org</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/Cuis-Smalltalk"><span class="icon icon--github"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">Cuis-Smalltalk</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Cuis is an Open Source, multiplatform Smalltalk-80 system.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,22 @@
+---
+
+layout: default
+
+title: Specific instructions for running a 32Bit Cuis and VM in a 64Bit X64 Linux system
+
+permalink: /Running32BitsCuisIn64BitsLinux
+---
+
+<div style="padding: 20px;"></div>
+<div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Specific instructions for running a 32Bit Cuis and VM in a 64Bit X64 Linux system</div>
+<div class="window-content">
+
+{% capture markdown %}{% include_relative Documentation/Running32BitsCuisIn64BitsLinux.md %}{% endcapture %}
+{% assign html = markdown | markdownify %}
+
+<div id="table-of-contents" class="toc" style="float: right;">
+{% include toc.html html=html h_min=2 h_max=2 %}
+</div>
+
+{{ html }}
+</div>
