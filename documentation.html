@@ -8,12 +8,13 @@ permalink: /documentation
 <div class="windowbar"><img src="../buttons.png">&nbsp;&nbsp;Documentation</div>
 <div class="window-content">
 
-{% capture readme %}{% include_relative README.md %}{% endcapture %}
-{% assign html = readme | markdownify %}
+  {% capture readme %}{% include_relative documentation.md %}{% endcapture %}
+  {% capture index %}{% include_relative index.md %}{% endcapture %}
+  {% assign html = readme | append: index | markdownify %}  
 
-<div id="table-of-contents" class="toc" style="float: right;">
-{% include toc.html html=html h_min=2 h_max=2 %}
-</div>
+  <div id="table-of-contents" class="toc" style="float: right;">
+    {% include toc.html html=html h_min=2 h_max=2 %}
+  </div>
 
 {{ html }}
 </div>

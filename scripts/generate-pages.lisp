@@ -82,10 +82,25 @@ permalink: /~a
                                          :if-exists :supersede
                                          :if-does-not-exist :create))))
 
+(defun generate-index-page ()
+  (let ((index
+         (with-output-to-string (s)
+           (format s  "## Index of Cuis topics~%~%")
+           (loop for file in (cuis-doc-files)
+              do
+                (multiple-value-bind (title content)
+                    (extract-title-and-content file)
+                  (format s "* [~a](~a)~%" title (pathname-name file)))))))
+    (alexandria:write-string-into-file index
+                                       (merge-pathnames "index.md" +jekyll-site-path+)
+                                       :if-exists :supersede
+                                       :if-does-not-exist :create)))
+
 (defun generate-pages ()
   (loop
      for file in (cuis-doc-files)
      do
        (format t "Generating page for: ~a~%" (file-namestring file)) 
        (write-md-file file)
-       (write-jekyll-page-file file)))
+       (write-jekyll-page-file file))
+  (generate-index-page))
