@@ -1,4 +1,3 @@
-================
 
 Part of the Cuis development is the move to a new version of Morphic called *Morphic3*.
 

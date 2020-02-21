@@ -21,7 +21,7 @@
      (extract-title (read-line f))
      (process-content
       (progn
-        (when (equalp (peek-char nil f) #\-)
+        (when (member (peek-char nil f) '(#\- #\=))
           (read-line f))
         (alexandria:read-stream-content-into-string f))))))
 
