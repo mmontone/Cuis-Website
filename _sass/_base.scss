@@ -217,11 +217,6 @@ pre {
     text-shadow: 1px 1px #F3F3F3;
 }
 
-.page-content {
-    position:relative;
-    padding-top: 0 !important;
-}
-
 .page-content:after {
     background-image: url('../Cuis_environment2.png');
     opacity: 0.4;
@@ -230,9 +225,13 @@ pre {
     position: absolute;
     
     left: 0;
-    top: 0;
+    top: 56px;
     bottom: 0;
     width: 100%;    
+}
+
+.content {
+    padding-top: 56px;
 }
 
 .window-content {
