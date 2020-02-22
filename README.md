@@ -1,4 +1,4 @@
-Cuis is an Open Source, multiplatform [Smalltalk-80](https://en.wikipedia.org/wiki/Smalltalk) system.
+[Cuis](https://github.com/Cuis-Smalltalk/Cuis-Smalltalk-Dev) is an Open Source, multiplatform [Smalltalk-80](https://en.wikipedia.org/wiki/Smalltalk) system.
 
 Cuis is
 * Small
