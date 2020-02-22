@@ -114,16 +114,16 @@ pre {
  * Wrapper
  */
 .wrapper {
-  max-width: -webkit-calc(800px - (30px * 2));
-  max-width: calc(800px - (30px * 2));
+  max-width: -webkit-calc(850px - (30px * 2));
+  max-width: calc(850px - (30px * 2));
   margin-right: auto;
   margin-left: auto;
   padding-right: 30px;
   padding-left: 30px; }
   @media screen and (max-width: 800px) {
     .wrapper {
-      max-width: -webkit-calc(800px - (30px));
-      max-width: calc(800px - (30px));
+      max-width: -webkit-calc(850px - (30px));
+      max-width: calc(850px - (30px));
       padding-right: 15px;
       padding-left: 15px; } }
 
@@ -153,6 +153,10 @@ pre {
   border-top-right-radius: 10px;
   font-size: 20px;
   text-shadow: 1px 1px #F3F3F3; }
+
+.page-content {
+  position: relative;
+  padding-bottom: 20px; }
 
 .page-content:after {
   background-image: url("../Cuis_environment2.png");
@@ -291,8 +295,10 @@ a.button:hover {
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid #e8e8e8;
-  padding: 30px 0; }
+  border-top: 1px solid #828282;
+  padding: 30px 0;
+  padding-left: 100px;
+  padding-right: 100px; }
 
 .footer-heading {
   font-size: 18px;
