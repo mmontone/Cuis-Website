@@ -7,13 +7,8 @@
 
 (in-package :cuis-website)
 
-(defparameter +cuis-root-folder+ (merge-pathnames "../../" (uiop/os:getcwd)))
-(defparameter +jekyll-site-path+ (merge-pathnames #p"Website/" +cuis-root-folder+))
-(defparameter +cuis-docs-path+ (merge-pathnames #p"Cuis-Smalltalk-Dev/Documentation/" +cuis-root-folder+))
-
-(format t "Cuis root folder: ~a~%" +cuis-root-folder+)
-(format t "Jekyll site path: ~a~%" +jekyll-site-path+)
-(format t "Cuis docs path: ~a~%" +cuis-docs-path+)
+(defvar +jekyll-site-path+)
+(defvar +cuis-docs-path+)
 
 (defun cuis-doc-files ()
   (loop for file in (fad:list-directory +cuis-docs-path+)
@@ -22,7 +17,7 @@
 
 (defun extract-title-and-content (file)
   (with-open-file (f file)
-    (values 
+    (values
      (extract-title (read-line f))
      (process-content
       (progn
@@ -102,10 +97,17 @@ permalink: /~a
                                        :if-does-not-exist :create)))
 
 (defun generate-pages ()
+  (setf +jekyll-site-path+ (uiop/os:getcwd))
+  (setf +cuis-docs-path+ (merge-pathnames #p"../Cuis-Smalltalk-Dev/Documentation/" (uiop/os:getcwd)))
+
+  (format t "Jekyll site path: ~a~%" +jekyll-site-path+)
+  (format t "Cuis docs path: ~a~%" +cuis-docs-path+)
+  (format t "INFO: run this from jekyll root directory as scripts/generate-pages~%")
+
   (loop
      for file in (cuis-doc-files)
      do
-       (format t "Generating page for: ~a~%" (file-namestring file)) 
+       (format t "Generating page for: ~a~%" (file-namestring file))
        (write-md-file file)
        (write-jekyll-page-file file))
   (generate-index-page))
