@@ -1,5 +1,5 @@
 (require :alexandria)
-(require :ppcre)
+(require :cl-ppcre)
 (require :cl-fad)
 
 (defpackage :cuis-website
@@ -7,8 +7,13 @@
 
 (in-package :cuis-website)
 
-(defparameter +jekyll-site-path+ #p"/home/marian/src/Cuis/Website/")
-(defparameter +cuis-docs-path+ #p"/home/marian/src/Cuis/Cuis-Smalltalk-Dev/Documentation/")
+(defparameter +cuis-root-folder+ (merge-pathnames "../../" (uiop/os:getcwd)))
+(defparameter +jekyll-site-path+ (merge-pathnames #p"Website/" +cuis-root-folder+))
+(defparameter +cuis-docs-path+ (merge-pathnames #p"Cuis-Smalltalk-Dev/Documentation/" +cuis-root-folder+))
+
+(format t "Cuis root folder: ~a~%" +cuis-root-folder+)
+(format t "Jekyll site path: ~a~%" +jekyll-site-path+)
+(format t "Cuis docs path: ~a~%" +cuis-docs-path+)
 
 (defun cuis-doc-files ()
   (loop for file in (fad:list-directory +cuis-docs-path+)
